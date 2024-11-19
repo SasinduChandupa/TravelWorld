@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelWorld</title>
+    <link rel="icon" type="image/x-icon" href="travel.png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <style>
+        .font-pacifico {
+            font-family: 'Pacifico', cursive;
+        }
+
+        .font-roboto {
+            font-family: 'roboto', cursive;
+        }
+
+        .font-pangolin {
+            font-family: 'pangolin', cursive;
+        }
+
+        .font-righteous {
+            font-family: 'Righteous', cursive;
+        }
+
+        #hexplore {
+            color: #3c3d91;
+        }
+
+        #pp {
+            color: #3c3d91;
+        }
+
+        .vertical-line {
+            width: 2px;
+            height: 100%;
+            background-color: white;
+            /* Color of the vertical line */
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    <!-- Navbar -->
+    <header class="flex items-center justify-between px-16 py-4 border-b border-gray-300">
+        <div class="flex items-center">
+            <img src="travel.png" alt="travel_Logo Logo" class="w-28 h-8">
+        </div>
+
+        <nav id="nav-links" class="hidden lg:flex space-x-8">
+            <a href="#" class="text-blue-700 font-bold hover:text-black">Home</a>
+            <a href="#" class="text-blue-700 font-bold hover:text-black">Contact</a>
+            <a href="#footer" class="text-blue-700 font-bold hover:text-black">About Us</a>
+        </nav>
+
+        <div class="hidden lg:block ">
+            <a href="#"
+                class="bg-white font-bold py-2 px-4 rounded-sm hover:bg-blue-500 shadow-black shadow-xl border border-black-500"
+                onclick="openLoginForm()">Login</a>
+            <a href="#"
+                class="bg-blue-400 text-white font-bold py-2 px-4 rounded-sm hover:bg-blue-500 shadow-black shadow-xl" onclick="RegisterOpen()">Register</a>
+        </div>
+
+        <button id="menu-toggle" class="text-gray-700 text-2xl lg:hidden">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- ---------------------------------------Login form----------------------------------------- -->
+    <div id="loginPopup" class="hidden fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
+        <div class="bg-white rounded-lg shadow-lg w-96 p-6 relative">
+            <button onclick="closeLoginForm()" class="absolute top-2 right-2 text-gray-500 hover:text-black">
+                &times;
+            </button>
+            <h2 class="text-2xl font-bold mb-4">Login</h2>
+            <form>
+                <div class="mb-4">
+                    <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                    <input type="text" id="username" name="username"
+                        class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="password" name="password"
+                        class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-start">
+                        <div class="flex items-center h-5">
+                            <input id="remember" aria-describedby="remember" type="checkbox"
+                                class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                                required="">
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label for="remember" class="text-gray-500 dark:text-gray-300">Remember me</label>
+                        </div>
+                    </div>
+                    <a href="#"
+                        class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500 text">Forgot
+                        password?</a>
+                </div>
+                <button type="submit"
+                    class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 mt-4">Login</button>
+                <p class="text-sm font-light text-gray-500 dark:text-gray-400 mt-6">
+                    Don’t have an account yet? <a href="#"
+                        class="font-medium text-primary-600 hover:underline dark:text-primary-500 text-blue-500">Sign up</a>
+                </p>
+            </form>
+        </div>
+    </div>
+    <!-- ---------------------------------------------Register form----------------------------------------------- -->
+    <div id="RegisterPopup" class="hidden fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
+        <div class="bg-white rounded-lg shadow-lg w-96 p-6 relative">
+            <button onclick="closeRegister()" class="absolute top-2 right-2 text-gray-500 hover:text-black">
+                &times;
+            </button>
+            <h2 class="text-2xl font-bold mb-4">Register</h2>
+            <form>
+                <div class="mb-4">
+                    <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                    <input type="text" id="username" name="username"
+                        class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Travelzz">
+                </div>
+                <div class="mb-4">
+                    <label for="Email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="Email" id="Email" name="Email"
+                        class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="travelworld@gmail.com">
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="block text-sm font-medium text-gray-700">NIC No</label>
+                    <input type="text" id="NIC" name="password"
+                        class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0000000000V">
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-start">
+                        <div class="flex items-center h-5">
+                            <input id="remember" aria-describedby="remember" type="checkbox"
+                                class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                                required="">
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label for="remember" class="text-gray-500 dark:text-gray-300">Remember me</label>
+                        </div>
+                    </div>
+                    <a href="#"
+                        class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500 text">Forgot
+                        password?</a>
+                </div>
+                <button type="submit"
+                    class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 mt-4">Login</button>
+                <p class="text-sm font-light text-gray-500 dark:text-gray-400 mt-6">
+                    Don’t have an account yet? <a href="#"
+                        class="font-medium text-primary-600 hover:underline dark:text-primary-500 text-blue-500">Sign up</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openLoginForm() {
+            document.getElementById("loginPopup").classList.remove("hidden");
+        }
+
+        function closeLoginForm() {
+            document.getElementById("loginPopup").classList.add("hidden");
+        }
+
+        function RegisterOpen() {
+            document.getElementById("RegisterPopup").classList.remove("hidden");
+        }
+
+        function closeRegister() {
+            document.getElementById("RegisterPopup").classList.add("hidden");
+        }
+    </script>
+
+    <!-- Main Content -->
+    <main class="flex flex-col md:flex-row items-center md:items-start px-4 sm:px-6 md:px-16 gap-6">
+        <!-- Text Content -->
+        <div class="md:w-1/2 text-center md:text-left">
+            <h2
+                class="text-4xl sm:text-5xl md:text-7xl font-bold text-yellow-500 font-pacifico px-2 sm:px-4 md:px-16 pt-8 sm:pt-10 md:pt-16">
+                Welcome to
+            </h2>
+            <h1
+                class="text-5xl sm:text-6xl md:text-8xl font-bold text-blue-600 mt-2 font-pangolin px-4 sm:px-6 md:px-16">
+                TravelWorld
+            </h1>
+            <p id="paragraph" class="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg text-gray-700 px-4 sm:px-6 md:px-0">
+                "Explore the world with us! At TravelWorld, we offer tailored travel packages, hassle-free bookings, and
+                unforgettable experiences. Whether it’s a relaxing beach getaway, a thrilling adventure, or a cultural
+                journey, we’ve got you covered. Let us turn your travel dreams into reality. Book your next adventure
+                today!"
+            </p>
+
+            <a href="#" id="toggleButton"
+                class="mt-3 inline-block px-4 py-1 text-white bg-blue-400 rounded-lg hover:bg-blue-700"
+                onclick="toggleText()">READ MORE</a>
+
+            <p class="mt-2">
+                <a href="#" class="text-blue-700 hover:underline">Terms and Conditions</a>
+            </p>
+        </div>
+
+        <script>
+            let isExpanded = false;
+
+            function toggleText() {
+                const paragraph = document.getElementById("paragraph");
+                const toggleButton = document.getElementById("toggleButton");
+
+                if (!isExpanded) {
+                    paragraph.innerHTML = `"Explore the world with us! At TravelWorld, we offer tailored travel packages, hassle-free bookings, and unforgettable experiences. Whether it’s a relaxing beach getaway, a thrilling adventure, or a cultural journey, we’ve got you covered. Let us turn your travel dreams into reality. Our curated itineraries are designed to immerse you in the beauty and culture of every destination. From the tranquil beaches of Bali to the bustling streets of New York City, from the timeless wonders of the Taj Mahal to the serene landscapes of the Swiss Alps—every moment is tailored to exceed your expectations. With 24/7 customer support and seamless booking, TravelWorld ensures your journeys are stress-free. Be it solo travel, family vacations, or romantic getaways, we cater to all travel styles. Experience luxury, adventure, and memories that last a lifetime."`;
+                    toggleButton.innerHTML = "READ LESS";
+                } else {
+                    paragraph.innerHTML = `"Explore the world with us! At TravelWorld, we offer tailored travel packages, hassle-free bookings, and unforgettable experiences. Whether it’s a relaxing beach getaway, a thrilling adventure, or a cultural journey, we’ve got you covered. Let us turn your travel dreams into reality. Book your next adventure today!"`;
+                    toggleButton.innerHTML = "READ MORE";
+                }
+                isExpanded = !isExpanded;
+            }
+        </script>
+
+        <!-- Image -->
+        <div class="md:w-1/2 w-full flex justify-center md:justify-end">
+            <img src="bg.png" alt="Travel" class="rounded-lg max-w-full md:max-w-md">
+        </div>
+    </main>
+
+    <!-- Explore section -->
+    <section class="bg-white py-12 px-4 sm:px-6 md:px-16">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8" id="hexplore">
+            <!-- Use id for make color using internal CSS -->
+            <span class="inline-block font-righteous">Explore your destination</span>
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Destination 1 -->
+            <div
+                class="bg-gray-100 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+                <img src="swiss.jpg" alt="Switzerland" class="w-full h-48 sm:h-56 object-cover">
+                <div class="p-6">
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-800">Switzerland</h3>
+                    <p class="text-sm sm:text-base text-gray-600 mt-2">
+                        Switzerland, a land of stunning alpine landscapes, charming villages, luxury watches,
+                        world-class chocolate, and a haven for adventure seekers.
+                    </p>
+                    <a href="https://www.myswitzerland.com/en/" class="text-blue-500 mt-4 inline-block hover:underline">
+                        More Details &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <!-- Destination 2 -->
+            <div
+                class="bg-gray-100 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+                <img src="singapoor.jpg" alt="Singapore" class="w-full h-48 sm:h-56 object-cover">
+                <div class="p-6">
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-800">Singapore</h3>
+                    <p class="text-sm sm:text-base text-gray-600 mt-2">
+                        Singapore, a vibrant city-state, is renowned for its stunning skyline, cultural diversity, lush
+                        gardens, and world-class attractions.
+                    </p>
+                    <a href="https://www.visitsingapore.com/" class="text-blue-500 mt-4 inline-block hover:underline">
+                        More Details &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <!-- Destination 3 -->
+            <div
+                class="bg-gray-100 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+                <img src="dubai.jpg" alt="Dubai" class="w-full h-48 sm:h-56 object-cover">
+                <div class="p-6">
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-800">Dubai</h3>
+                    <p class="text-sm sm:text-base text-gray-600 mt-2">
+                        Dubai, a vibrant city of luxury, towering skyscrapers, stunning deserts, world-class shopping,
+                        and rich cultural experiences.
+                    </p>
+                    <a href="https://www.google.com/search?q=dubai+&sca_esv=ab56b00da05de27d&rlz=1C1CHWL_enLK1015LK1017&sxsrf=ADLYWIIxX9yADIFI0u7-GM5_xLxfFxVY1w%3A1731989196482&ei=zA48Z72YHZ2vseMPho66WQ&ved=0ahUKEwi9rr7GwueJAxWdV2wGHQaHLgsQ4dUDCA8&uact=5&oq=dubai+&gs_lp=Egxnd3Mtd2l6LXNlcnAiBmR1YmFpIDIKECMYgAQYJxiKBTIKECMYgAQYJxiKBTILEAAYgAQYkQIYigUyDRAAGIAEGLEDGBQYhwIyCBAAGIAEGLEDMggQABiABBixAzIKEAAYgAQYFBiHAjIIEAAYgAQYsQMyCBAAGIAEGLEDMgUQABiABEj2B1CtA1i6BHABeACQAQCYAcUBoAHmA6oBAzAuM7gBA8gBAPgBAZgCAqACowHCAgoQABiwAxjWBBhHmAMAiAYBkAYIkgcDMS4xoAekEw&sclient=gws-wiz-serp"
+                        class="text-blue-500 mt-4 inline-block hover:underline">
+                        More Details &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Rating section -->
+    <div class="py-12 px-4 sm:px-6 md:px-16 font-roboto">
+        <section class="py-12 px-4 sm:px-6 md:px-16 rounded-xl h-auto sm:h-96"
+            style="background: url('bg2.jpg') no-repeat center center / cover; background-color: rgba(255, 255, 255, 0.1); background-blend-mode: overlay;">
+
+            <!-- Header Section -->
+            <div class="text-white mb-8">
+                <h2 class="text-3xl sm:text-4xl font-bold text-center">
+                    ✈️ Traveler Tales & Experiences ✨
+                </h2>
+            </div>
+
+            <!-- Stats Section -->
+            <div
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 bg-black bg-opacity-30 rounded-xl py-8 px-4 justify-items-center">
+                <!-- Stat 1 -->
+                <div class="text-white flex items-center">
+                    <div class="vertical-line mr-4"></div> <!-- Vertical line -->
+                    <div>
+                        <h1 class="text-6xl font-bold">93%</h1>
+                        <p class="text-xl">Accommodation</p>
+                    </div>
+                </div>
+                <!-- Stat 2 -->
+                <div class="text-white flex items-center">
+                    <div class="vertical-line mr-4"></div> <!-- Vertical line -->
+                    <div>
+                        <h1 class="text-6xl font-bold">97%</h1>
+                        <p class="text-xl">Agancy</p>
+                    </div>
+                </div>
+                <!-- Stat 3 -->
+                <div class="text-white flex items-center">
+                    <div class="vertical-line mr-4"></div> <!-- Vertical line -->
+                    <div>
+                        <h1 class="text-6xl font-bold">91%</h1>
+                        <p class="text-xl">Tour guides</p>
+                    </div>
+                </div>
+                <div class="text-yellow-500 text-center">
+
+                </div>
+                <div class="text-yellow-300 text-center">
+                    <h1 class="text-4xl font-bold">200K</h1>
+                    <p class="text-xl">Happy Travelers</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Price para section -->
+    <div class="py-4">
+        <section
+            class="bg-white py-4 px-4 sm:px-6 md:px-16 flex flex-col sm:flex-row justify-center sm:items-end space-y-4 sm:space-y-0 sm:space-x-4">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold font-righteous" id="hexplore">Flight tickets + Visa
+            </h2>
+            <h2 class="text-xl sm:text-xl md:text-xl font-bold font-righteous" id="hexplore">Prices</h2>
+        </section>
+        <p class="text-black font-righteous w-full sm:w-auto text-center">Our prices are flexible and open to
+            negotiation to ensure the best value for your travel experience.</p>
+    </div>
+
+    <!-- Price girds -->
+    <section class="bg-white py-12 px-4 sm:px-6 md:px-16">
+        <div class="flex space-x-6 overflow-x-auto md:grid md:gap-8 md:grid-cols-3">
+            <!-- Economy Class -->
+            <div class="min-w-[280px] border rounded-lg shadow-lg p-6 flex flex-col items-center">
+                <h3 class="text-xl font-bold mb-4">Economy Class</h3>
+                <p class="text-4xl font-bold text-indigo-600 mb-2" id="pp">$1990<span
+                        class="text-lg font-normal">/mo</span></p>
+                <p class="text-gray-600 mb-4">+100$ per day</p>
+                <ul class="space-y-2 text-sm text-gray-700">
+                    <li class="flex items-center"><span class="mr-2">✔️</span> Flight tickets (up / down)</li>
+                    <li class="flex items-center"><span class="mr-2">✔️</span> Accommodation</li>
+                    <li class="flex items-center"><span class="mr-2">✔️</span> Taxi</li>
+                </ul>
+                <button
+                    class="mt-20 bg-indigo-900 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transform hover:scale-105 transition duration-300">Get
+                    started</button>
+            </div>
+
+            <!-- Business Class -->
+            <div class="min-w-[280px] border rounded-lg shadow-lg p-6 flex flex-col items-center">
+                <h3 class="text-xl font-bold mb-4">Business Class</h3>
+                <p class="text-4xl font-bold text-indigo-600 mb-2" id="pp">$2990<span
+                        class="text-lg font-normal">/mo</span></p>
+                <p class="text-gray-600 mb-4">+100$ per day</p>
+                <ul class="space-y-2 text-sm text-gray-700">
+                    <li class="flex items-center"><span class="mr-2">✔️</span> Flight tickets (up / down)</li>
+                    <li class="flex items-center"><span class="mr-2">✔️</span> One day 5-star hotel experience</li>
+                    <li class="flex items-center"><span class="mr-2">✔️</span> Accommodation</li>
+                    <li class="flex items-center"><span class="mr-2">✔️</span> Taxi</li>
+                </ul>
+                <button
+                    class="mt-14 bg-indigo-900 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transform hover:scale-105 transition duration-300">Get
+                    started</button>
+            </div>
+
+            <!-- First Class -->
+            <div class="min-w-[280px] border rounded-lg shadow-lg p-6 flex flex-col items-center">
+                <h3 class="text-xl font-bold mb-4">First Class</h3>
+                <p class="text-4xl font-bold text-indigo-600 mb-2" id="pp">$4990<span
+                        class="text-lg font-normal">/mo</span></p>
+                <p class="text-gray-600 mb-4">+100$ per day</p>
+                <ul class="space-y-2 text-sm text-gray-700">
+                    <li class="flex items-center"><span class="mr-2">✔️</span> Flight tickets (up / down)</li>
+                    <li class="flex items-center"><span class="mr-2">✔️</span> One day 5-star hotel experience</li>
+                    <li class="flex items-center"><span class="mr-2">✔️</span> Stay one night in private yacht</li>
+                    <li class="flex items-center"><span class="mr-2">✔️</span> Accommodation</li>
+                    <li class="flex items-center"><span class="mr-2">✔️</span> Taxi</li>
+                </ul>
+                <button
+                    class="mt-6 bg-indigo-900 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transform hover:scale-105 transition duration-300">Get
+                    started</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-white py-12 px-4 sm:px-6 md:px-16">
+        <hr class="border-t border-blue-900 my-4">
+        <div class="flex items-center justify-center sm:justify-start">
+            <img src="travel.png" alt="travel_Logo Logo" class="w-28 h-8">
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-center sm:text-left">
+            <!-- Address and Contact -->
+            <div>
+                <h4 class="font-bold text-lg mt-4">Address:</h4>
+                <p class="text-gray-600">4th floor, Talbot Building, Colombo 02, Colombo, Sri Lanka</p>
+                <h4 class="font-bold text-lg mt-4">Contact:</h4>
+                <p class="text-gray-600">+21 562 852 8759</p>
+                <a href="mailto:travelworldinfo@google.com"
+                    class="text-indigo-600 hover:underline">travelworldinfo@google.com</a>
+                <p class="mt-2 flex justify-center sm:justify-start space-x-4">
+                    <a href="#" class="text-gray-600 hover:text-indigo-600">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-indigo-600">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-indigo-600">
+                        <i class="fab fa-x-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-indigo-600">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="text-gray-600 hover:text-indigo-600">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </p>
+            </div>
+            <div></div>
+            <!-- Subscribe -->
+            <div class="flex flex-col items-center">
+                <h4 class="font-bold text-lg mb-2">Subscribe</h4>
+                <form class="flex w-full max-w-md">
+                    <input type="email" placeholder="Enter your email"
+                        class="border border-gray-300 rounded-l-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                    <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-r-lg hover:bg-indigo-700">
+                        Subscribe
+                    </button>
+                </form>
+                <p class="text-sm text-gray-600 mt-2"> By subscribing you agree to with our
+                    <a href="#" class="text-indigo-600 hover:underline">Privacy Policy</a>
+                </p>
+            </div>
+        </div>
+        <hr class="border-t border-blue-900 my-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-center sm:text-left">
+            <div>
+                <a href="#" class="text-indigo-600 underline">Privacy Policy</a>
+                <a href="#" class="text-indigo-600 underline pl-8">Terms & Service</a>
+            </div>
+            <div></div>
+            <div>
+                <a href="#" class="text-indigo-600 underline pl-8">© 2024 Relume. All rights reserved.</a>
+            </div>
+        </div>
+    </section>
+
+
+</body>
+
+</html>
